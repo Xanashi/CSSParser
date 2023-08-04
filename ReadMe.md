@@ -82,40 +82,40 @@ with the CSS selectors.
 * Print all selector descriptions and rules
 
   ```c++
-int i = 1;
-printf("\n\n********** All Selectors **********\n\n");
-for (future::Selector* s : selectors) {
-        printf("#%i\n\n", i++);
-        printf("%s\n\n", s->description().c_str());
-        printf("specificity: %i\n\n\n", s->weight());
+  int i = 1;
+  printf("\n\n********** All Selectors **********\n\n");
+  for (future::Selector* s : selectors) {
+      printf("#%i\n\n", i++);
+      printf("%s\n\n", s->description().c_str());
+      printf("specificity: %i\n\n\n", s->weight());
 
-        auto ruleMap = s->getRuleDataMap();
-        for (const auto& rule : ruleMap) {
-            printf("%s: %s\n", rule.first.c_str(), rule.second.c_str());
-        }
+      auto ruleMap = s->getRuleDataMap();
+      for (const auto& rule : ruleMap) {
+          printf("%s: %s\n", rule.first.c_str(), rule.second.c_str());
+      }
 
-        printf("\n----------------------\n\n");
-    }
-    printf("\n");
+      printf("\n----------------------\n\n");
+  }
+  printf("\n");
   ```
 
 * Match custom node with selector and handle selector rules and specificity if the node macthes a selector (See the CustomNodeExample for the full code)
 
   ```c++
-int selIdx = 1;
-CustomNode* node = new CustomNode(); // <-- Your custom node 
-for (future::Selector* s : selectors) {
-        if (future::NodeSelectorResolver::DoesNodeMatchSelector(node, s)) {
-             auto spec = s->weight();
-             auto ruleMap = s->getRuleDataMap();
+  int selIdx = 1;
+  CustomNode* node = new CustomNode(); // <-- Your custom node 
+  for (future::Selector* s : selectors) {
+      if (future::NodeSelectorResolver::DoesNodeMatchSelector(node, s)) {
+          auto spec = s->weight();
+          auto ruleMap = s->getRuleDataMap();
 
-             ApplyStyleRules(node, ruleMap, spec);
+          ApplyStyleRules(node, ruleMap, spec);
 
-             printf("node %s%s %s matched with selector #%i\n", 
-                 node->tag.c_str(), node->GetIdDesc().c_str(), node->GetClassesDesc().c_str(), selIdx);
-        }
-        selIdx++;
-    }
+          printf("node %s%s %s matched with selector #%i\n", 
+          node->tag.c_str(), node->GetIdDesc().c_str(), node->GetClassesDesc().c_str(), selIdx);
+      }
+      selIdx++;
+  }
   ```
 
 ## Applicability
