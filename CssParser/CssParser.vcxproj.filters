@@ -1,0 +1,171 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Header Files\CssParser">
+      <UniqueIdentifier>{48f1e61c-4cb7-42d2-bc20-fba782607ce4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Selectors">
+      <UniqueIdentifier>{f75c86a1-c896-42cf-8352-8f61615a095e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Utils">
+      <UniqueIdentifier>{6b4830c5-b8b3-4ba1-ab4d-3e2f7b99ce01}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Selectors">
+      <UniqueIdentifier>{dd026ef0-97ef-4379-b878-ad9013f94264}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Utils">
+      <UniqueIdentifier>{bfb4b02b-f13f-482b-810f-db261c1d009e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Resolvers">
+      <UniqueIdentifier>{e253d597-b50f-4100-8553-2abf02463cd4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Resolvers">
+      <UniqueIdentifier>{ed857539-91ea-4fcd-ac2f-d45cd2f17517}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\CssParser">
+      <UniqueIdentifier>{1fa11f3e-1328-4224-a05a-c5493980cd37}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\utils\ContainerUtil.h">
+      <Filter>Header Files\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="include\utils\StringUtil.h">
+      <Filter>Header Files\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="include\selectors\AttributeSelector.h">
+      <Filter>Header Files\Selectors</Filter>
+    </ClInclude>
+    <ClInclude Include="include\selectors\ClassSelector.h">
+      <Filter>Header Files\Selectors</Filter>
+    </ClInclude>
+    <ClInclude Include="include\selectors\CombineSelector.h">
+      <Filter>Header Files\Selectors</Filter>
+    </ClInclude>
+    <ClInclude Include="include\selectors\IdSelector.h">
+      <Filter>Header Files\Selectors</Filter>
+    </ClInclude>
+    <ClInclude Include="include\selectors\PseudoSelector.h">
+      <Filter>Header Files\Selectors</Filter>
+    </ClInclude>
+    <ClInclude Include="include\selectors\Selector.h">
+      <Filter>Header Files\Selectors</Filter>
+    </ClInclude>
+    <ClInclude Include="include\selectors\SelectorGroup.h">
+      <Filter>Header Files\Selectors</Filter>
+    </ClInclude>
+    <ClInclude Include="include\selectors\SelectorSequence.h">
+      <Filter>Header Files\Selectors</Filter>
+    </ClInclude>
+    <ClInclude Include="include\selectors\SelectorsHeader.h">
+      <Filter>Header Files\Selectors</Filter>
+    </ClInclude>
+    <ClInclude Include="include\selectors\SignSelector.h">
+      <Filter>Header Files\Selectors</Filter>
+    </ClInclude>
+    <ClInclude Include="include\selectors\TypeSelector.h">
+      <Filter>Header Files\Selectors</Filter>
+    </ClInclude>
+    <ClInclude Include="include\selectors\UniversalSelector.h">
+      <Filter>Header Files\Selectors</Filter>
+    </ClInclude>
+    <ClInclude Include="include\resolvers\INodeSelector.h">
+      <Filter>Header Files\Resolvers</Filter>
+    </ClInclude>
+    <ClInclude Include="include\resolvers\NodePseudoSelectorResolver.h">
+      <Filter>Header Files\Resolvers</Filter>
+    </ClInclude>
+    <ClInclude Include="include\resolvers\NodeSelectorResolver.h">
+      <Filter>Header Files\Resolvers</Filter>
+    </ClInclude>
+    <ClInclude Include="include\cssparser\CSSLex.h">
+      <Filter>Header Files\CssParser</Filter>
+    </ClInclude>
+    <ClInclude Include="include\cssparser\CSSLexStatus.h">
+      <Filter>Header Files\CssParser</Filter>
+    </ClInclude>
+    <ClInclude Include="include\cssparser\CSSParser.h">
+      <Filter>Header Files\CssParser</Filter>
+    </ClInclude>
+    <ClInclude Include="include\cssparser\CSSParserStatus.h">
+      <Filter>Header Files\CssParser</Filter>
+    </ClInclude>
+    <ClInclude Include="include\cssparser\KeywordItem.h">
+      <Filter>Header Files\CssParser</Filter>
+    </ClInclude>
+    <ClInclude Include="include\utils\CSSUtil.h">
+      <Filter>Header Files\Utils</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\utils\ContainerUtil.cpp">
+      <Filter>Source Files\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="src\utils\StringUtil.cpp">
+      <Filter>Source Files\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="src\selectors\ClassSelector.cpp">
+      <Filter>Source Files\Selectors</Filter>
+    </ClCompile>
+    <ClCompile Include="src\selectors\CombineSelector.cpp">
+      <Filter>Source Files\Selectors</Filter>
+    </ClCompile>
+    <ClCompile Include="src\selectors\IdSelector.cpp">
+      <Filter>Source Files\Selectors</Filter>
+    </ClCompile>
+    <ClCompile Include="src\selectors\PseudoSelector.cpp">
+      <Filter>Source Files\Selectors</Filter>
+    </ClCompile>
+    <ClCompile Include="src\selectors\Selector.cpp">
+      <Filter>Source Files\Selectors</Filter>
+    </ClCompile>
+    <ClCompile Include="src\selectors\SelectorGroup.cpp">
+      <Filter>Source Files\Selectors</Filter>
+    </ClCompile>
+    <ClCompile Include="src\selectors\SelectorSequence.cpp">
+      <Filter>Source Files\Selectors</Filter>
+    </ClCompile>
+    <ClCompile Include="src\selectors\SignSelector.cpp">
+      <Filter>Source Files\Selectors</Filter>
+    </ClCompile>
+    <ClCompile Include="src\selectors\TypeSelector.cpp">
+      <Filter>Source Files\Selectors</Filter>
+    </ClCompile>
+    <ClCompile Include="src\selectors\UniversalSelector.cpp">
+      <Filter>Source Files\Selectors</Filter>
+    </ClCompile>
+    <ClCompile Include="src\selectors\AttributeSelector.cpp">
+      <Filter>Source Files\Selectors</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resolvers\NodePseudoSelectorResolver.cpp">
+      <Filter>Source Files\Resolvers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resolvers\NodeSelectorResolver.cpp">
+      <Filter>Source Files\Resolvers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cssparser\CSSLex.cpp">
+      <Filter>Source Files\CssParser</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cssparser\CSSParser.cpp">
+      <Filter>Source Files\CssParser</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cssparser\KeywordItem.cpp">
+      <Filter>Source Files\CssParser</Filter>
+    </ClCompile>
+    <ClCompile Include="src\utils\CSSUtil.cpp">
+      <Filter>Source Files\Utils</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

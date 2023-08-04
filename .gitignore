@@ -1,0 +1,16 @@
+
+*.user
+*.suo
+*.sdf
+*.opendb
+*.opensdf
+*.aps
+*.po~
+
+ipch/
+bin*/
+int*/
+obj/
+Debug/
+Release/
+.vs/

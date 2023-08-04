@@ -1,0 +1,156 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Source Files\Applicability">
+      <UniqueIdentifier>{edb94105-20eb-441d-ab0b-b021679c0fae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Applicability">
+      <UniqueIdentifier>{9c66ce43-7387-4476-95ec-f5661efbff11}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Gumbo">
+      <UniqueIdentifier>{6ee943f9-13a4-4c57-ac7b-9a5b5e65966a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Gumbo">
+      <UniqueIdentifier>{94d8eb2f-84de-4200-b0d1-1daec0203bc3}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Applicability\HTMLCSSRefAdaptor.cpp">
+      <Filter>Source Files\Applicability</Filter>
+    </ClCompile>
+    <ClCompile Include="Applicability\PseudoSelectorRefChiefJudge.cpp">
+      <Filter>Source Files\Applicability</Filter>
+    </ClCompile>
+    <ClCompile Include="Gumbo\error.c">
+      <Filter>Source Files\Gumbo</Filter>
+    </ClCompile>
+    <ClCompile Include="Gumbo\gumbo_edit.c">
+      <Filter>Source Files\Gumbo</Filter>
+    </ClCompile>
+    <ClCompile Include="Gumbo\GumboInterface.cpp">
+      <Filter>Source Files\Gumbo</Filter>
+    </ClCompile>
+    <ClCompile Include="Gumbo\parser.c">
+      <Filter>Source Files\Gumbo</Filter>
+    </ClCompile>
+    <ClCompile Include="Gumbo\string_buffer.c">
+      <Filter>Source Files\Gumbo</Filter>
+    </ClCompile>
+    <ClCompile Include="Gumbo\string_piece.c">
+      <Filter>Source Files\Gumbo</Filter>
+    </ClCompile>
+    <ClCompile Include="Gumbo\tag.c">
+      <Filter>Source Files\Gumbo</Filter>
+    </ClCompile>
+    <ClCompile Include="Gumbo\tokenizer.c">
+      <Filter>Source Files\Gumbo</Filter>
+    </ClCompile>
+    <ClCompile Include="Gumbo\UrlUtil.cpp">
+      <Filter>Source Files\Gumbo</Filter>
+    </ClCompile>
+    <ClCompile Include="Gumbo\utf8.c">
+      <Filter>Source Files\Gumbo</Filter>
+    </ClCompile>
+    <ClCompile Include="Gumbo\util.c">
+      <Filter>Source Files\Gumbo</Filter>
+    </ClCompile>
+    <ClCompile Include="Gumbo\vector.c">
+      <Filter>Source Files\Gumbo</Filter>
+    </ClCompile>
+    <ClCompile Include="Gumbo\attribute.c">
+      <Filter>Source Files\Gumbo</Filter>
+    </ClCompile>
+    <ClCompile Include="Gumbo\char_ref.c">
+      <Filter>Source Files\Gumbo</Filter>
+    </ClCompile>
+    <ClCompile Include="GumboExample.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Applicability\HTMLCSSRefAdaptor.h">
+      <Filter>Header Files\Applicability</Filter>
+    </ClInclude>
+    <ClInclude Include="Gumbo\attribute.h">
+      <Filter>Header Files\Gumbo</Filter>
+    </ClInclude>
+    <ClInclude Include="Gumbo\char_ref.h">
+      <Filter>Header Files\Gumbo</Filter>
+    </ClInclude>
+    <ClInclude Include="Gumbo\error.h">
+      <Filter>Header Files\Gumbo</Filter>
+    </ClInclude>
+    <ClInclude Include="Gumbo\gumbo.h">
+      <Filter>Header Files\Gumbo</Filter>
+    </ClInclude>
+    <ClInclude Include="Gumbo\gumbo_edit.h">
+      <Filter>Header Files\Gumbo</Filter>
+    </ClInclude>
+    <ClInclude Include="Gumbo\GumboInterface.h">
+      <Filter>Header Files\Gumbo</Filter>
+    </ClInclude>
+    <ClInclude Include="Gumbo\insertion_mode.h">
+      <Filter>Header Files\Gumbo</Filter>
+    </ClInclude>
+    <ClInclude Include="Gumbo\parser.h">
+      <Filter>Header Files\Gumbo</Filter>
+    </ClInclude>
+    <ClInclude Include="Gumbo\string_buffer.h">
+      <Filter>Header Files\Gumbo</Filter>
+    </ClInclude>
+    <ClInclude Include="Gumbo\string_piece.h">
+      <Filter>Header Files\Gumbo</Filter>
+    </ClInclude>
+    <ClInclude Include="Gumbo\tag_enum.h">
+      <Filter>Header Files\Gumbo</Filter>
+    </ClInclude>
+    <ClInclude Include="Gumbo\tag_perf.h">
+      <Filter>Header Files\Gumbo</Filter>
+    </ClInclude>
+    <ClInclude Include="Gumbo\tag_sizes.h">
+      <Filter>Header Files\Gumbo</Filter>
+    </ClInclude>
+    <ClInclude Include="Gumbo\tag_strings.h">
+      <Filter>Header Files\Gumbo</Filter>
+    </ClInclude>
+    <ClInclude Include="Gumbo\token_type.h">
+      <Filter>Header Files\Gumbo</Filter>
+    </ClInclude>
+    <ClInclude Include="Gumbo\tokenizer.h">
+      <Filter>Header Files\Gumbo</Filter>
+    </ClInclude>
+    <ClInclude Include="Gumbo\tokenizer_states.h">
+      <Filter>Header Files\Gumbo</Filter>
+    </ClInclude>
+    <ClInclude Include="Gumbo\UrlUtil.h">
+      <Filter>Header Files\Gumbo</Filter>
+    </ClInclude>
+    <ClInclude Include="Gumbo\utf8.h">
+      <Filter>Header Files\Gumbo</Filter>
+    </ClInclude>
+    <ClInclude Include="Gumbo\util.h">
+      <Filter>Header Files\Gumbo</Filter>
+    </ClInclude>
+    <ClInclude Include="Gumbo\vector.h">
+      <Filter>Header Files\Gumbo</Filter>
+    </ClInclude>
+    <ClInclude Include="Gumbo\include\strings.h">
+      <Filter>Header Files\Gumbo</Filter>
+    </ClInclude>
+    <ClInclude Include="Applicability\PseudoSelectorRefChiefJudge.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
