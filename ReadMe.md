@@ -26,7 +26,7 @@ Please check the CustomNodeExample project for a full example.
 
 ## Installation
 
-##### Using Code
+##### Using the Code
 
 * Clone the source code into a working directory `git clone https://github.com/Xanashi/CSSParser.git`
 * Open the Visual Studio solution
