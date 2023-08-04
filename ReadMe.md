@@ -42,7 +42,7 @@ Please check the CustomNodeExample project for a full example.
 ## Features
 
 * Parse CSS files or strings
-* Iterate through the CSS rules using selectors
+* Easily iterate through the CSS selectors and rules
 * CSS rules is provided as raw string or std::map key/value pairs
 * Use INodeSelector interface to match a custom node tree automatically
 with the CSS selectors. 
