@@ -777,8 +777,20 @@ void CSSParser::clean() {
 }
 
 void CSSParser::cleanRes() {
+	for (auto item : m_selectors)
+	{
+		delete item;
+	}
 	m_selectors.clear();
+	for (auto item : m_keywords)
+	{
+		delete item;
+	}
 	m_keywords.clear();
+	for (auto item : m_signSelecors)
+	{
+		delete item;
+	}
 	m_signSelecors.clear();
 }
 
