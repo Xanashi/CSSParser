@@ -32,7 +32,7 @@ namespace future {
     private:
         typedef void(*traverseAction)(INodeSelector* node, bool& stop, TraverseUtilStruct* baseInfo);
 
-        static std::map<std::string, bool>& GetDynamicPseudoClassMap();
+        static bool IsDynamicPseudoClass(const std::string& name);
         
         static bool TraverseElementNodeSiblings(INodeSelector*node, traverseAction ac, TraverseUtilStruct* baseInfo);
         

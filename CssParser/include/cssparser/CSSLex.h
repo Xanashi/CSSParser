@@ -51,6 +51,7 @@ namespace future {
         size_t                  m_bufferSize;
         size_t                  m_firstPos;
         size_t                  m_forwardPos;
+        CSSDFAStatus            m_status;
         std::set<CSSToken *>   m_tokenCache;
     };
 }

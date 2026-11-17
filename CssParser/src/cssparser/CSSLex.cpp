@@ -23,6 +23,7 @@ namespace future {
         m_buffer = 0;
         m_firstPos = 0;
         m_forwardPos = 0;
+        m_status = Start;
     }
     
     Lex::~Lex()
@@ -57,6 +58,7 @@ namespace future {
         fclose(fileHandler);
         m_firstPos = 0;
         m_forwardPos = 0;
+        m_status = Start;
     }
     
     void Lex::SetBufferString(const std::string &bufferString)
@@ -73,6 +75,7 @@ namespace future {
         memcpy((void *)m_buffer, bufferString.data(), m_bufferSize);
         m_firstPos = 0;
         m_forwardPos = 0;
+        m_status = Start;
     }
 
     Lex::CSSToken* Lex::GetTextToken(char stringType)
@@ -337,24 +340,23 @@ namespace future {
         m_firstPos = m_forwardPos;
         bool stopLoop = false;
         std::string data;
-        static CSSDFAStatus STATUS;
         if (m_firstPos >= m_bufferSize || !m_buffer) {
             token->type = END;
             return token;
         }
         while(1) {
             char c = NextChar(m_buffer);
-            switch (STATUS) {
+            switch (m_status) {
                 case Start: {
                     switch (c) {
                         case '@': {
                             CSSToken* identToken = GetIdentToken();
                             stopLoop = true;
                             if (identToken->type == IDENT) {
-                                STATUS = AtKeyWord;
+                                m_status = AtKeyWord;
                                 data = identToken->data;
                             } else {
-                                STATUS = LexError;
+                                m_status = LexError;
                             }
                             break;
                         }
@@ -362,117 +364,117 @@ namespace future {
                             CSSToken* identToken = GetIdentToken();
                             stopLoop = true;
                             if (identToken->type == IDENT) {
-                                STATUS = Hash;
+                                m_status = Hash;
                                 data = identToken->data;
                             } else {
-                                STATUS = LexError;
+                                m_status = LexError;
                             }
                             break;
                         }
                         case '~': {
                             if (NextChar(m_buffer) == EQUAL_SIGN) {
-                                STATUS = include;
+                                m_status = include;
                             } else {
-                                STATUS = tidle;
+                                m_status = tidle;
                                 --m_forwardPos;
                             }
                             break;
                         }
                         case '|': {
                             if (NextChar(m_buffer) == EQUAL_SIGN) {
-                                STATUS = dashMatch;
+                                m_status = dashMatch;
                             } else {
-                                STATUS = LexError;
+                                m_status = LexError;
                             }
                             break;
                         }
                         case '^': {
                             if (NextChar(m_buffer) == EQUAL_SIGN) {
-                                STATUS = prefixMatch;
+                                m_status = prefixMatch;
                             } else {
-                                STATUS = LexError;
+                                m_status = LexError;
                             }
                             break;
                         }
                         case '$': {
                             if (NextChar(m_buffer) == EQUAL_SIGN) {
-                                STATUS = suffixMatch;
+                                m_status = suffixMatch;
                             } else {
-                                STATUS = LexError;
+                                m_status = LexError;
                             }
                             break;
                         }
                         case '*': {
                             if (NextChar(m_buffer) == EQUAL_SIGN) {
-                                STATUS = subStringMatch;
+                                m_status = subStringMatch;
                             } else {
                                 --m_forwardPos;
-                                STATUS = star;
+                                m_status = star;
                             }
                             break;
                         }
                         case '"': {
-                            STATUS = string1Start;
+                            m_status = string1Start;
                             break;
                         }
                         case '\'': {
-                            STATUS = string2Start;
+                            m_status = string2Start;
                             break;
                         }
                         case WS_CASE: {
-                            STATUS = Ws;
+                            m_status = Ws;
                             break;
                         }
                         case '.': {
-                            STATUS = dot;
+                            m_status = dot;
                             stopLoop = true;
                             break;
                         }
                         case '{': {
-                            STATUS = blockStart;
+                            m_status = blockStart;
                             stopLoop = true;
                             break;
                         }
                         case '}': {
-                            STATUS = blockEnd;
+                            m_status = blockEnd;
                             stopLoop = true;
                             break;
                         }
                         case ',': {
-                            STATUS = comma;
+                            m_status = comma;
                             stopLoop = true;
                             break;
                         }
                         case '>': {
-                            STATUS = greater;
+                            m_status = greater;
                             stopLoop = true;
                             break;
                         }
                         case '+': {
-                            STATUS = plus;
+                            m_status = plus;
                             stopLoop = true;
                             break;
                         }
                         case '[': {
-                            STATUS = leftSqureBracket;
+                            m_status = leftSqureBracket;
                             break;
                         }
                         case ']': {
-                            STATUS = rightSqureBracket;
+                            m_status = rightSqureBracket;
                             break;
                         }
                         case ':': {
-                            STATUS = colon;
+                            m_status = colon;
                             break;
                         }
                         case '=': {
-                            STATUS = equal;
+                            m_status = equal;
                             break;
                         }
                         case '/': {
                             char cn = NextChar(m_buffer);
                             if (cn == '*') {
-                                STATUS = annotationStart;
+                                m_status = annotationStart;
                             } else {
                                 --m_forwardPos;
                                 goto identLabel;
@@ -480,20 +482,20 @@ namespace future {
                             break;
                         }
                         case ';' : {
-                        	STATUS = semicolon;
+                        	m_status = semicolon;
                         	break;
                         }
                         case NUMBER_CASE: {
                             --m_forwardPos;
-                            STATUS = numberStart;
+                            m_status = numberStart;
                             break;
                         }
                         case ')': {
-                            STATUS = rightBracket;
+                            m_status = rightBracket;
                             break;
                         }
                         case '-': {
-                            STATUS = minus;
+                            m_status = minus;
                             break;
                         }
                             
@@ -503,17 +505,17 @@ namespace future {
                             CSSToken* idToken = GetIdentToken();
                             char next = NextChar(m_buffer);
                             if (next == '(') {
-                                STATUS = function;
+                                m_status = function;
                                 data = idToken->data;
                             } else {
                                 --m_forwardPos;
                                 if (idToken->type == IDENT) {
-                                    STATUS = iDent;
+                                    m_status = iDent;
                                     data = idToken->data;
                                 } else if (idToken->type == END) {
-                                    STATUS = end;
+                                    m_status = end;
                                 } else {
-                                    STATUS = LexError;
+                                    m_status = LexError;
                                 }
                             }
                             stopLoop = true;
@@ -525,21 +527,21 @@ namespace future {
                 case Ws: {
                     stopLoop = true;
                     if (isWs(c)) {
-                        STATUS = Ws;
+                        m_status = Ws;
                         stopLoop = false;
                     } else if (c == PLUS_SIGN) {
-                        STATUS = plus;
+                        m_status = plus;
                     } else if (c == COMMA_SIGN) {
-                        STATUS = comma;
+                        m_status = comma;
                     } else if (c == GREATER_SIGN) {
-                        STATUS = greater;
+                        m_status = greater;
                     } else  if (c == TIDLE_SIGN) {
-                        STATUS = tidle;
+                        m_status = tidle;
                     } else if ( c == '\0') {
-                    	  STATUS = end;
+                    	  m_status = end;
                     } else  {
                         --m_forwardPos;
-                        STATUS = Ws;
+                        m_status = Ws;
                     }
                     break;
                 }
@@ -548,15 +550,15 @@ namespace future {
                 }
                 case blockStart: {
                     if (c == BLOCK_END_SIGN) {
-                        STATUS = blockEnd;
+                        m_status = blockEnd;
                     }
                     while (c != BLOCK_END_SIGN) {
                         if (m_forwardPos >= m_bufferSize) {
-                            STATUS = LexError;
+                            m_status = LexError;
                             break;
                         } else {
                             c = NextChar(m_buffer);
-                            STATUS = blockEnd;
+                            m_status = blockEnd;
                         }
                     }
                     data = createData(m_firstPos, m_forwardPos);
@@ -566,20 +568,20 @@ namespace future {
                 case string1Start: {
                     CSSToken* stringToken = GetTextToken(1);
                     if (stringToken->type == STRING) {
-                        STATUS = string1End;
+                        m_status = string1End;
                         data = stringToken->data;
                     } else {
-                        STATUS = LexError;
+                        m_status = LexError;
                     }
                     break;
                 }
                 case string2Start: {
                     CSSToken* stringToken = GetTextToken(2);
                     if (stringToken->type == STRING) {
-                        STATUS = string2End;
+                        m_status = string2End;
                         data = stringToken->data;
                     } else {
-                        STATUS = LexError;
+                        m_status = LexError;
                     }
                     break;
                 }
@@ -587,7 +589,7 @@ namespace future {
                     char cn = NextChar(m_buffer);
                     if (cn == 0) {break;}
                     if (c == '*' && cn == '/') {
-                        STATUS = annotationEnd;
+                        m_status = annotationEnd;
                     } else {
                         --m_forwardPos;
                         continue;
@@ -599,9 +601,9 @@ namespace future {
                     CSSToken* numberToken = GetNumberToken();
                     if (numberToken) {
                         data = numberToken->data;
-                        STATUS = num;
+                        m_status = num;
                     } else {
-                        STATUS = LexError;
+                        m_status = LexError;
                     }
                     break;
                 }
@@ -612,7 +614,7 @@ namespace future {
                     break;
             }
             bool resetStatus = true;
-            switch (STATUS) {
+            switch (m_status) {
                 case AtKeyWord: {
                     token->type = ATKEYWORD;
                     token->data = data;
@@ -654,7 +656,7 @@ namespace future {
                 case blockEnd:{
                     token->type = BLOCKEND;
                     token->data = data;
-                    STATUS = Start;
+                    m_status = Start;
                     break;
                 }
                 case end: {
@@ -777,7 +779,7 @@ namespace future {
             }
             if (stopLoop) {
                 if (resetStatus) {
-                    STATUS = Start;
+                    m_status = Start;
                 }
                 break;
             }

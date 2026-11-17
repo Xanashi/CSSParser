@@ -4,33 +4,23 @@
 #include "utils/StringUtil.h"
 
 #include <string>
+#include <set>
 
-namespace future {  
-    static std::map<std::string, bool> dynamicPsudoClassCacheMap;
-
+namespace future {
     static void NodeIndexCounter(INodeSelector* node, bool& stop, TraverseUtilStruct* userData);
     static void NodeFullIndexCounter(INodeSelector* node, bool& stop, TraverseUtilStruct* userData);
     static void NodeTypeEqualIndexCounter(INodeSelector* node, bool& stop, TraverseUtilStruct* userData);
     static void NodeFullTypeEqualIndexCounter(INodeSelector* node, bool& stop, TraverseUtilStruct* userData);
 
-    std::map<std::string, bool>& NodePseudoSelectorResolver::GetDynamicPseudoClassMap()
+    // A constant set, initialized once and never modified, so it's safe to use from several threads at once
+    bool NodePseudoSelectorResolver::IsDynamicPseudoClass(const std::string& name)
     {
-        if (!dynamicPsudoClassCacheMap.empty()) {
-            return dynamicPsudoClassCacheMap;
-        }
+        static const std::set<std::string> dynamicPseudoClasses = {
+            "link", "visited", "hover", "active", "focus",
+            "enable", "disable", "checked", "indeterminate", "target"
+        };
 
-        dynamicPsudoClassCacheMap["link"]          = true;
-        dynamicPsudoClassCacheMap["visited"]       = true;
-        dynamicPsudoClassCacheMap["hover"]         = true;
-        dynamicPsudoClassCacheMap["active"]        = true;
-        dynamicPsudoClassCacheMap["focus"]         = true;
-        dynamicPsudoClassCacheMap["enable"]        = true;
-        dynamicPsudoClassCacheMap["disable"]       = true;
-        dynamicPsudoClassCacheMap["checked"]       = true;
-        dynamicPsudoClassCacheMap["indeterminate"] = true;
-        dynamicPsudoClassCacheMap["target"]        = true;
-
-        return dynamicPsudoClassCacheMap;
+        return dynamicPseudoClasses.count(name) != 0;
     }
     
     bool NodePseudoSelectorResolver::DoesNodeMatchPseudo(INodeSelector *node, future::PseudoSelector *selector)
@@ -42,7 +32,7 @@ namespace future {
         if (ruleData.empty()) {
             return false;
         }
-        if (GetDynamicPseudoClassMap()[ruleData]) {
+        if (IsDynamicPseudoClass(ruleData)) {
             return true;
         }
 
