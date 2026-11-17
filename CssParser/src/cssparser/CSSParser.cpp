@@ -797,18 +797,10 @@ void CSSParser::clean() {
 }
 
 void CSSParser::cleanRes() {
-	for (auto item : m_selectors) {
-		delete item;
-	}
-	m_selectors.clear();
-	for (auto item : m_keywords) {
-		delete item;
-	}
-	m_keywords.clear();
-	for (auto item : m_signSelecors) {
-		delete item;
-	}
-	m_signSelecors.clear();
+	// Composite selectors delete their child selectors
+	CleanContainer<Selector *>(m_selectors);
+	CleanContainer<KeywordItem *>(m_keywords);
+	CleanContainer<Selector *>(m_signSelecors);
 }
 
 static void cleanASTTree(CSSParser::ASTNode *node) {
