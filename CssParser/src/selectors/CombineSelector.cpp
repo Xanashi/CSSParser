@@ -17,7 +17,7 @@ namespace future {
         CleanContainer<Selector *>(m_normalSiblingList);
         CleanContainer<Selector *>(m_instanceSiblingList);
         CleanContainer<Selector *>(m_normalInhericalList);
-        CleanContainer<Selector *>(m_instanceSiblingList);
+        CleanContainer<Selector *>(m_instanceInhericalList);
     }
     
     void CombineSelector::initialNormalSiblingList(future::Selector *head, future::Selector *sibling)
