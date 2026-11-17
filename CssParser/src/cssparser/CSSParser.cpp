@@ -41,6 +41,16 @@ static void eraseStack(std::stack<T>& stack) {
 	std::stack<T> st;
 	stack.swap(st);
 }
+// Deletes the selectors left on the syntax stack when parsing stops early. Sign selectors are owned by m_signSelecors.
+static void cleanSyntaxStack(std::stack<Selector *>& stack) {
+	while (!stack.empty()) {
+		Selector* s = stack.top();
+		stack.pop();
+		if (s->getType() != Selector::SignSelector)
+			delete s;
+	}
+}
+
 template<class T>
 static void cleanStack(std::stack<T>& stack) {
 	while (!stack.empty()) {
@@ -90,7 +100,8 @@ bool CSSParser::parse() {
 			} else if (startSelector(token->type)) {
 				Selector* selector = getSelector(token);
 				if (!selector) {
-					return false;
+					success = false;
+					break;
 				}
 				syntaxStack.push(selector);
 				m_status = INSELECTOR;
@@ -122,7 +133,7 @@ bool CSSParser::parse() {
 					}
 					syntaxStack.push(s);
 				} else {
-					return false;
+					success = false;
 				}
 			}
 			break;
@@ -175,6 +186,7 @@ bool CSSParser::parse() {
 						node->head->setHostCSSFilePath(m_hostCssFile);
 						m_selectors.push_back(node->head);
 					}
+					if (node->temporary) delete node; // Only the node, the selector is kept
 					delete result;
 					LRMtranverseAST(*it++, cleanASTTree);
 				}
@@ -198,6 +210,7 @@ bool CSSParser::parse() {
 		}
 		token = m_lexer->GetToken();
 	}
+	cleanSyntaxStack(syntaxStack);
 	m_lexer->CleanResource();
 	return success;
 }
@@ -656,12 +669,18 @@ CSSParser::ASTNode* TreeTranverseCreateExpressionAction(std::stack<
 	if (stack->size() != 3) {
 		return 0;
 	}
-	Selector* _right = stack->top()->head;
-	stack->pop();
-	Selector* _left = stack->top()->head;
-	stack->pop();
-	SignSelector* _operator = dynamic_cast<SignSelector *> (stack->top()->head);
-	stack->pop();
+	ASTNode* operands[3];
+	for (auto& n : operands) {
+		n = stack->top();
+		stack->pop();
+	}
+	Selector* _right = operands[0]->head;
+	Selector* _left = operands[1]->head;
+	SignSelector* _operator = dynamic_cast<SignSelector *> (operands[2]->head);
+	// Nodes built by earlier calls are only containers, their selectors now belong to the new selector
+	for (auto& n : operands) {
+		if (n->temporary) delete n;
+	}
 	if (!_operator) {
 		assert(0);
 	}
@@ -708,6 +727,7 @@ CSSParser::ASTNode* TreeTranverseCreateExpressionAction(std::stack<
 	}
 	node = new ASTNode;
 	node->head = selector;
+	node->temporary = true;
 	return node;
 }
 

@@ -33,11 +33,13 @@ namespace future {
             Selector* head;
             ASTNode* left;
             ASTNode* right;
+            bool temporary; // Created while building an expression, not part of the AST
             ASTNode()
             {
                 head = NULL;
                 left = NULL;
                 right = NULL;
+                temporary = false;
             }
         };
     public:
